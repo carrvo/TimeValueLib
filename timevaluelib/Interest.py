@@ -66,7 +66,7 @@ class Interest(object):
             - subperiod: number of compoundings within a period
         """
         self.rate = float(rate)
-        self.period = TimeSpan(period)
+        self.period = period if isinstance(period, TimeSpan) else TimeSpan(period)
         self.subperiod = int(subperiod) if subperiod else None
         if self.subperiod:
             self.effectiveRate = (1 + self.rate / self.subperiod)**self.subperiod - 1
@@ -103,9 +103,9 @@ class Interest(object):
     def __pow__(self, deltaperiods):
         """
         Magic Method for implementing the exponential/power (**) operator.
-        Specifically the behaviour is a short-cut for self.convert for user-friendly usage.
+        Specifically the behaviour combines self.convert with a time conversion.
         """
-        return self.convert(deltaperiods)
+        return Interest(rate=self.convert(deltaperiods)-1, period=deltaperiods*self.period)
 
     def __rmul__(self, timevalue):
         """

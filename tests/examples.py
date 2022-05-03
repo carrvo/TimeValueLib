@@ -42,9 +42,10 @@ class TimeValueLibExamples(unittest.TestCase):
         # print object to screen
         self.assertEqual(str(secondyear), 'Interest Rate: 0.2\nInterest Period: 365 days, 0:00:00\nSubperiods: 12')
         # ratio for 1 year ahead (supports negatives for backward)
-        self.assertEqual(secondyear ** 1, 1.2193910849052316)
+        self.assertEqual(secondyear.convert(1), 1.2193910849052316)
+        self.assertEqual(str(secondyear ** 1), 'Interest Rate: 0.21939108490523163\nInterest Period: 365 days, 0:00:00\nSubperiods: None')
         # ratio for 10 years ahead
-        self.assertEqual(secondyear ** 10, 7.26825499216019)
+        self.assertEqual(secondyear.convert(10), 7.26825499216019)
 
         self.assertRaises(TypeError, lambda: secondpayment / secondyear)
         self.assertRaises(TypeError, lambda: secondyear / secondpayment)
@@ -66,3 +67,8 @@ class TimeValueLibExamples(unittest.TestCase):
         self.assertEqual(str(firstearning * firstyear + secondearning), 'Value: 105.0 @ 01/01/0003')
         # convert and add then convert again
         self.assertEqual(str((firstearning * firstyear + secondearning) * secondyear), 'Value: 128.0360639150493 @ 01/01/0004')
+
+    def test_multi_year_jump(self):
+        constrate = Interest(rate=0.1, period=365)
+        start = TimeValue(500, '01/01/0001')
+        self.assertEqual(str(constrate ** 10 * start), 'Value: 1296.8712300500013 @ 30/12/0010')
