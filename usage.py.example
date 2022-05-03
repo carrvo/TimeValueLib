@@ -1,7 +1,7 @@
 C:\Users\carrvo\Documents\Programming Development\Ongoing\TimeValueLib\Source>python3
 Python 3.6.0 (v3.6.0:41df79263a11, Dec 23 2016, 08:06:12) [MSC v.1900 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
->>> from TimeValueLib import TimeValue,Interest
+>>> from timevaluelib import TimeValue,Interest
 >>> help(Interest)
 Help on class Interest in module TimeValueLib.Interest:
 
