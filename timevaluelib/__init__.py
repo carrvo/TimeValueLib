@@ -5,5 +5,5 @@ Exposure of Module internals.
 ##TODO##
 """
 
-from TimeValueLib.TimeValue import TimeValue
-from TimeValueLib.Interest import Interest
+from timevaluelib.TimeValue import TimeValue
+from timevaluelib.Interest import Interest

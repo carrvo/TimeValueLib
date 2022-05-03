@@ -40,12 +40,12 @@ stated is not the effectively reduced interest rate but the rate before inflatio
 
 from datetime import timedelta as TimeSpan
 
-from TimeValueLib.TimeValue import TimeValue
+from timevaluelib.TimeValue import TimeValue
 
 class Interest(object):
     """
     Class for representing interest (compounded or not).
-    
+
     Specifically objects of this class use an interest rate to calculate
         value conversions through time. This conversion is needed for
         comparing between the value of the money on hand (including its
@@ -55,11 +55,11 @@ class Interest(object):
         amount loaned plus the interest (as the interest is only there to
         compensate for opportunity and not add to the value of the money).
     """
-    
+
     def __init__(self, rate, period, subperiod=None):#, start, finish=None):
         """
         Initializes.
-        
+
         @Params:
             - rate: interest rate (nominal rate -- full period)
             - period: interest period; length of time between interest payments
@@ -74,32 +74,32 @@ class Interest(object):
             self.effectiveRate = self.rate
         #self.start = DateTime(start)
         #self.finish = DateTime(finish) if finish else DateTime('Today')
-    
+
     def convert(self, deltaperiods):
         """
         Calculates a ratio that converts any value across a change (delta) in time.
             This time-conversion calculation is independent of when the start
             and finish of any conversion is.
-        
+
         WARNING: Use of this method directly with TimeValue causes integrity
             issues as it does not modify the TimeValue time so the "conversion"
             would simply change the value at the time it would originally be at.
             This means that its value relative to its time would change (impossible)
             and you would be gaining or losing time-value amounts instead of
             comparing the same time-value amount across times with different values.
-        
+
         @Params:
             - deltaperiods: the change (delta) in time to convert through
         """
         #deltaperiods and self.period relationship
         return (1 + self.effectiveRate)**deltaperiods
-    
+
     def __str__(self):
         """
         Magic Method that returns a user-friendly representation of the object.
         """
         return 'Interest Rate: {}\nInterest Period: {}\nSubperiods: {}'.format(self.rate, self.period, self.subperiod)
-    
+
     def __pow__(self, deltaperiods):
         """
         Magic Method for implementing the exponential/power (**) operator.
