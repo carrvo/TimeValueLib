@@ -140,7 +140,7 @@ def _TVmulI(self, interest):
 setattr(TimeValue, '__mul__', _TVmulI)
 setattr(TimeValue, '__rmul__', _TVmulI)
 
-_originalTVdiv = TimeValue.__div__
+_originalTVdiv = TimeValue.__truediv__
 def _TVdivI(self, interest):
     """
     TEMPORARILY: a single divide represents a single period jump backward in time.
@@ -152,4 +152,4 @@ def _TVdivI(self, interest):
         return timevalue
     else:
         return _originalTVdiv(self, interest)
-setattr(TimeValue, '__div__', _TVdivI)
+setattr(TimeValue, '__truediv__', _TVdivI)

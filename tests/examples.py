@@ -47,11 +47,11 @@ class TimeValueLibExamples(unittest.TestCase):
         # ratio for 10 years ahead
         self.assertEqual(secondyear.convert(10), 7.26825499216019)
 
-        self.assertRaises(TypeError, lambda: secondpayment / secondyear)
+        # supports devision
+        self.assertEqual(str(secondpayment / secondyear), 'Value: -82.00814425978174 @ 01/01/0004')
         self.assertRaises(TypeError, lambda: secondyear / secondpayment)
-        self.assertRaises(TypeError, lambda: secondpayment / secondearning)
-        self.assertRaises(TypeError, lambda: secondpayment / 5)
-        #supposed to support division...
+        self.assertEqual(str(secondpayment / secondearning), 'Value: -2.0 @ 01/01/0003')
+        self.assertEqual(str(secondpayment / 5), 'Value: -20.0 @ 01/01/0003')
 
         self.assertEqual(str(secondpayment * 5), 'Value: -500.0 @ 01/01/0003')
         # support multiplication
