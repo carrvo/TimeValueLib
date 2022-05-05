@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='TimeValueLib',
-    version='0.0',
+    version='0.1',
     description='Economics Library representing the Time-Value property of money.',
     author='carrvo',
     author_email='carrvo@gmail.com',
