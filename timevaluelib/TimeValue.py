@@ -22,7 +22,7 @@ By doing so the equation is modified to become:
 """
 
 import datetime
-Date = lambda date, format: datetime.datetime.strptime(date, format).date() if not isinstance(date, datetime.date) else Date(date.strftime(format), format)
+Date = lambda date, format: datetime.datetime.strptime(date, format).date() if not isinstance(date, datetime.date) else datetime.date(date.year, date.month, date.day)
 
 #from TimeValueLib.Interest import Interest
 
