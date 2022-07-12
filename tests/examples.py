@@ -1,6 +1,9 @@
 import unittest
 
+import timevaluelib
 from timevaluelib import TimeValue,Interest
+
+timevaluelib.DATE_FORMAT = '%d/%m/%Y'
 
 class TimeValueLibExamples(unittest.TestCase):
 
