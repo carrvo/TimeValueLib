@@ -6,7 +6,7 @@ import datetime
 
 import timevaluelib
 
-def parseDate(date, format=None):
+def parse_date(date, format=None):
     """
     Parses a date from a string or copies a datetime.date object.
 
@@ -23,7 +23,7 @@ def parseDate(date, format=None):
     else:
         return datetime.date.fromisoformat(date)
 
-def formatDate(date, format=None):
+def format_date(date, format=None):
     """
     Formats a date into a string.
 

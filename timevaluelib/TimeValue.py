@@ -56,8 +56,8 @@ class TimeValue(object):
             - dateformat: the string format the date parameter is represented as
         """
         self.value = float(value)
-        self.originalDate = dateserializer.parseDate(date, dateformat)
-        self.time = dateserializer.parseDate(date, dateformat) #self.date
+        self.original_date = dateserializer.parse_date(date, dateformat)
+        self.time = dateserializer.parse_date(date, dateformat) #self.date
 
     def __copy__(self):
         """
@@ -65,14 +65,14 @@ class TimeValue(object):
         Since this is a simple class this method functions as a deep copy.
         """
         timevalue = TimeValue(self.value, self.time)
-        timevalue.originalDate = self.originalDate
+        timevalue.original_date = self.original_date
         return timevalue
 
     def __str__(self):
         """
         Magic Method that returns a user-friendly representation of the object.
         """
-        return 'Value: {} @ {}'.format(self.value, dateserializer.formatDate(self.time))
+        return 'Value: {} @ {}'.format(self.value, dateserializer.format_date(self.time))
 
     def __validate__(self, other):
         """
@@ -86,7 +86,7 @@ class TimeValue(object):
             raise TypeError('TimeValue can only operate on TimeValue')
         if self.time != other.time:
             raise ValueError('Must have the same date!')
-        maxoriginal = max(self.originalDate, other.originalDate)
+        maxoriginal = max(self.original_date, other.original_date)
         if self.time > maxoriginal:
             raise ValueError('Cannot convert beyond latest ({}) change in value!'.format(maxoriginal))
 
