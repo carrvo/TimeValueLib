@@ -40,7 +40,7 @@ stated is not the effectively reduced interest rate but the rate before inflatio
 
 from datetime import timedelta as TimeSpan
 
-from timevaluelib.TimeValue import TimeValue
+from timevaluelib.timevalue import TimeValue
 
 class Interest(object):
     """

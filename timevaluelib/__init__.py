@@ -5,8 +5,8 @@ Exposure of Module internals.
 ##TODO##
 """
 
-from timevaluelib.TimeValue import TimeValue
-from timevaluelib.Interest import Interest
+from timevaluelib.timevalue import TimeValue
+from timevaluelib.interest import Interest
 
 DATE_FORMAT = None
 
