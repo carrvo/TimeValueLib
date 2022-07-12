@@ -8,4 +8,6 @@ Exposure of Module internals.
 from timevaluelib.TimeValue import TimeValue
 from timevaluelib.Interest import Interest
 
-__all__ = ['TimeValue', 'Interest']
+DATE_FORMAT = None
+
+__all__ = ['DATE_FORMAT', 'TimeValue', 'Interest']

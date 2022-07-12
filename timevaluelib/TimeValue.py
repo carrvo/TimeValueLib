@@ -21,9 +21,7 @@ By doing so the equation is modified to become:
 
 """
 
-import datetime
-Date = lambda date, format: datetime.datetime.strptime(date, format).date() if not isinstance(date, datetime.date) else datetime.date(date.year, date.month, date.day)
-
+from timevaluelib import dateserializer
 #from TimeValueLib.Interest import Interest
 
 class TimeValue(object):
@@ -48,19 +46,18 @@ class TimeValue(object):
         the same class where they will be treated as equivalent.
     """
 
-    dateformat = '%d/%m/%Y'
-
-    def __init__(self, value, date):
+    def __init__(self, value, date, dateformat=None):
         """
         Initializes.
 
         @Params:
             - value: monetary ($)
             - date
+            - dateformat: the string format the date parameter is represented as
         """
         self.value = float(value)
-        self.originalDate = Date(date, TimeValue.dateformat)
-        self.time = Date(date, TimeValue.dateformat) #self.date
+        self.originalDate = dateserializer.parseDate(date, dateformat)
+        self.time = dateserializer.parseDate(date, dateformat) #self.date
 
     def __copy__(self):
         """
@@ -75,7 +72,7 @@ class TimeValue(object):
         """
         Magic Method that returns a user-friendly representation of the object.
         """
-        return 'Value: {} @ {}'.format(self.value, self.time.strftime(TimeValue.dateformat))
+        return 'Value: {} @ {}'.format(self.value, dateserializer.formatDate(self.time))
 
     def __validate__(self, other):
         """
